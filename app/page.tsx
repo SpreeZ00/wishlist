@@ -1,28 +1,21 @@
-import WishlistItem from "@/components/WishlistItem";
+import Wishlist from "@/components/Wishlist";
+import PopupModal from "@/components/PopupModal";
+import NewItemForm from "@/components/NewItemForm";
 
-export default function Home() {
-  const wishlist = [{ id: 1, name: "test1", text: "test1", link: "test1" }, { id: 2, name: "test2", text: "test2", link: "test2" },
-  { id: 3, name: "test3", text: "test3", link: "test3" }];
-  
+function getWishlist() {
+    return fetch('http://localhost:3000/api/wishes')
+        .then((res) => res.json())
+}
+export default async function Home() {
+  const wishlist = await getWishlist();
+    console.log("Wishlist:", wishlist);
+
   return (
     <main className="m-2">
-      <h1 className="text-3xl text-center">Wunschliste</h1>
-      <div className="flex flex-wrap justify-evenly gap-4">
-        {wishlist.map((item) => {
-          return <WishlistItem item={item} key={item.id} />;
-        })
-        }
-      </div>
+      <h1 className="text-3xl text-center font-thin mb-3">Wunschliste</h1>
+        <Wishlist wishlist={wishlist} />
       <br />
-      <form>
-        <label htmlFor="name">Name</label>
-        <input type="text" id="name" name="name" /><br />
-        <label htmlFor="text">Text</label>
-        <input type="text" id="text" name="text" /><br />
-        <label htmlFor="link">Link</label>
-        <input type="text" id="link" name="link" /><br />
-        <button type="submit">Submit</button>
-      </form>
+        <PopupModal title={"Neuen Eintrag hinzufügen"} body={<NewItemForm />} footer={<></>} />
     </main>
   )
 }
