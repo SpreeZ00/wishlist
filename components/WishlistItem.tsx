@@ -1,20 +1,13 @@
 "use client"
 
-import {AiOutlineDelete} from "react-icons/ai";
-import {useRouter} from "next/navigation";
+import { AiOutlineDelete } from "react-icons/ai";
+import { useRouter } from "next/navigation";
+import { Wish } from "@/utils/services/wish.service";
 
-export interface WishlistItem {
-    id: number;
-    title: string;
-    description: string;
-    url: string,
-    user: string
-}
-
-export default function WishlistItem({ item }: { item: WishlistItem }) {
+export default function WishlistItem({ item }: { item: Wish }) {
     const router = useRouter();
     const handleDelete = async () => {
-        await fetch(`http://localhost:3000/api/wish/${item.id}`, {
+        await fetch(`/api/wish/${item.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

@@ -8,7 +8,6 @@ function getWishlist() {
 }
 export default async function Home() {
   const wishlist = await getWishlist();
-    console.log("Wishlist:", wishlist);
 
   return (
     <main className="m-2">

@@ -6,7 +6,7 @@ export default function NewItemForm() {
     const router = useRouter();
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        await fetch('http://localhost:3000/api/wish', {
+        await fetch('/api/wish', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ export default function NewItemForm() {
             </label>
 
             <label htmlFor="description">Beschreibung:
-                <input className="bg-gray-200 rounded-md drop-shadow-lg focus:border-blue-400 border-2 outline-0 float-right" type="text" id="description" name="description" required />
+                <input className="bg-gray-200 rounded-md drop-shadow-lg focus:border-blue-400 border-2 outline-0 float-right" type="text" id="description" name="description" />
             </label>
 
             <label htmlFor="url">Link:
