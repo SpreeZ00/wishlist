@@ -5,6 +5,7 @@ export type Wish = {
     title: string;
     description: string;
     url: string;
+    user: string;
 }
 
 export const getWishes = async (): Promise<Wish[]> => {
